@@ -31,13 +31,17 @@ $(".image-upload-wrap").bind("dragleave", function () {
 
 $("#btnUpload").on("click", function () {
   var formData = new FormData();
-  formData.append("file", $("#img").val());
+  // console.log($("#img"));
+  formData.append('file', $('#img')[0].files[0]);
+
+  // formData.append("file", $("#img").files[0]);
   $.ajax({
     url: "http://localhost:8880",
     type: "POST",
     dataType: false,
     contentType: false,
     data: formData,
+    processData: false,
   })
     .done(function (res) {
       alert(res.cancer);
